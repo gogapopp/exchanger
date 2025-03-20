@@ -59,19 +59,6 @@ func New(ctx context.Context) (*repository, error) {
 		return &repository{}, fmt.Errorf("%s: %v", op, err)
 	}
 
-	_, err = db.ExecContext(ctx, "INSERT OR IGNORE INTO Currencies (code, full_name, sign) VALUES ('USD', 'United States dollar', '$')")
-	if err != nil {
-		return &repository{}, fmt.Errorf("%s: %v", op, err)
-	}
-	_, err = db.ExecContext(ctx, "INSERT OR IGNORE INTO Currencies (code, full_name, sign) VALUES ('RUB', 'Russian Ruble', '₽')")
-	if err != nil {
-		return &repository{}, fmt.Errorf("%s: %v", op, err)
-	}
-	_, err = db.ExecContext(ctx, "INSERT OR IGNORE INTO Currencies (code, full_name, sign) VALUES ('EUR', 'Euro', '€')")
-	if err != nil {
-		return &repository{}, fmt.Errorf("%s: %v", op, err)
-	}
-
 	return &repository{conn: db}, nil
 }
 
